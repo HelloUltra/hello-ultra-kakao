@@ -1,9 +1,8 @@
 package net.remind.Controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,11 +12,11 @@ import net.remind.Service.Answer;
 
 @RestController
 public class MessageController {
-	
 	@PostMapping("/message")
-	public @ResponseBody String message(JSONObject getMessage) throws ParseException{
-		getMessage = new JSONObject();
-		JSONObject sendMessage = new JSONObject();
+	public @ResponseBody Map<String, Object> message(Map<String,Object> getMessage) throws ParseException{
+		System.out.println("메세지 받았습니다!");
+		Map <String, Object> sendMessage = new HashMap<String, Object>();
+		Map <String, Object> sendObject = new HashMap<String, Object>();
 		String user_key = getMessage.get("user_key").toString();
 		String type = getMessage.get("type").toString();
 		String content = getMessage.get("content").toString();
@@ -27,10 +26,9 @@ public class MessageController {
 		
 		Answer answer = new Answer();
 		String makedMessage = answer.make_Message(content);
-		
-		JSONParser parser = new JSONParser();
-		sendMessage = (JSONObject) parser.parse(makedMessage);
+		sendMessage.put("text", makedMessage);
 		System.out.println("리턴할 메시지 : "+sendMessage);
-		return sendMessage.toJSONString();
+		sendObject.put("message",sendMessage.get("text"));
+		return sendObject;
 	}
 }
