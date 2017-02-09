@@ -41,7 +41,7 @@ public class MessageController {
 		sendMessage.put("text", makedMessage);
 		log.debug("리턴할 메시지 : {}", sendMessage);
 		System.out.println("sendMessage:"+sendMessage);
-		sendObject.put("message",sendMessage.get("text"));
+		sendObject.put("message",sendMessage);
 		return sendObject;
 	}
 }
