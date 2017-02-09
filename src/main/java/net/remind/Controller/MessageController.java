@@ -21,23 +21,26 @@ public class MessageController {
 
 	@PostMapping("/message")
 	public @ResponseBody Map<String, Object> message( @RequestBody Map<String,Object> getMessage) throws ParseException{
-		
+		System.out.println("메세지받음");
 		log.debug("메세지 받았습니다!");
 		Map <String, Object> sendMessage = new HashMap<String, Object>();
 		Map <String, Object> sendObject = new HashMap<String, Object>();
 		log.debug("getMessage : {}", getMessage);
-		
+		System.out.println("getMessage : "+getMessage);
 		String user_key = getMessage.get("user_key").toString();
 		String type = getMessage.get("type").toString();
 		String content = getMessage.get("content").toString();
 		log.debug("user_key : {}",user_key);
+		System.out.println("user_key : "+ user_key);
 		log.debug("type : {}",type);
+		System.out.println("type :" + type);
 		log.debug("content : {}",content);
-
+		System.out.println("content: " + content);
 		Answer answer = new Answer();
 		String makedMessage = answer.make_Message(content);
 		sendMessage.put("text", makedMessage);
 		log.debug("리턴할 메시지 : {}", sendMessage);
+		System.out.println("sendMessage:"+sendMessage);
 		sendObject.put("message",sendMessage.get("text"));
 		return sendObject;
 	}
