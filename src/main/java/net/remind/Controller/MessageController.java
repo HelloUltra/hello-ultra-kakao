@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.json.simple.parser.ParseException;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,11 +13,14 @@ import net.remind.Service.Answer;
 
 @RestController
 public class MessageController {
-	@PostMapping("/message")
-	public @ResponseBody Map<String, Object> message(@RequestParam Map<String,Object> getMessage) throws ParseException{
+	@RequestMapping("/message")
+	public @ResponseBody Map<String, Object> message( @RequestParam Map<String,Object> getMessage) throws ParseException{
 		System.out.println("메세지 받았습니다!");
 		Map <String, Object> sendMessage = new HashMap<String, Object>();
 		Map <String, Object> sendObject = new HashMap<String, Object>();
+		System.out.println("getMessage : " + getMessage);
+		
+		
 		String user_key = getMessage.get("user_key").toString();
 		String type = getMessage.get("type").toString();
 		String content = getMessage.get("content").toString();
