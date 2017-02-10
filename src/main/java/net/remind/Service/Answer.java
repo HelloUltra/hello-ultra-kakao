@@ -13,7 +13,7 @@ public class Answer {
 		if(content.contains("솔비텍")){
 			return "퇴사";
 		}
-		if(content.contains("주먹")){
+		if(content.equals("주먹")){
 			return "양기종,정현우,곽대용,박창우,형성관,박용옥";
 		}
 		return content;
