@@ -7,6 +7,9 @@ public class Answer {
 		if(content.equals("안녕")){
 			return "안녕하세욤";
 		}
+		if(content.equals("나어떤것같아")){
+			return "여신";
+		}
 		return content;
 	}
 
