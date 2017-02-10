@@ -16,6 +16,9 @@ public class Answer {
 		if(content.equals("주먹")){
 			return "양기종,정현우,곽대용,박창우,형성관,박용옥";
 		}
+		if(content.contains("퇴사목록")){
+			return "곽대용,이은희,김준혁,나성훈,조윤식,설재희";
+		}
 		return content;
 	}
 
